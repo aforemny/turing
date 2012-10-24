@@ -94,10 +94,7 @@ class Pretty a where
     pretty :: a -> String
 
 instance Pretty q => Pretty (TM q, Tape) where
-    pretty (tm, tap) = "OO" ++ concatMap show (toListLeft tap)
-                            ++ pretty (state tm)
-                            ++ concatMap show (take 64 $ toListRight tap)
-                            ++ "OO\n"
+    pretty (tm, tap) = "OO" ++ concatMap show (take 64 $ toList tap) ++ "OO\n"
                             ++ "  " ++ replicate (length $ toListLeft tap) ' '
                             ++ "^" ++ "\n"
                             ++ "  " ++ replicate (length $ toListLeft tap) ' '
